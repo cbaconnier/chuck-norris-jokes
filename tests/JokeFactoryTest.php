@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class JokeFactoryTest extends TestCase
 {
-
     /** @test */
     public function it_returns_a_random_joke(): void
     {
@@ -37,5 +36,4 @@ class JokeFactoryTest extends TestCase
 
         $this->assertSame('This is a joke', $joke);
     }
-
 }
