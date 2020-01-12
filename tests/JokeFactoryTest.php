@@ -10,6 +10,18 @@ class JokeFactoryTest extends TestCase
     /** @test */
     public function it_returns_a_random_joke(): void
     {
+        $jokes = new JokeFactory([
+            'This is a joke',
+        ]);
+
+        $joke = $jokes->getRandomJoke();
+
+        $this->assertSame('This is a joke', $joke);
+    }
+
+    /** @test */
+    public function it_returns_a_predefined_joke(): void
+    {
         $chuckNorrisJokes = [
             'Chuck Norris threw a grenade and killed 50 people, then it exploded.',
             'Slow motion was invented in an attempt to defeat Chuck Norris. In response, Chuck Norris invented fast forward.',
@@ -25,15 +37,4 @@ class JokeFactoryTest extends TestCase
         $this->assertContains($joke, $chuckNorrisJokes);
     }
 
-    /** @test */
-    public function it_returns_a_predefined_joke(): void
-    {
-        $jokes = new JokeFactory([
-            'This is a joke',
-        ]);
-
-        $joke = $jokes->getRandomJoke();
-
-        $this->assertSame('This is a joke', $joke);
-    }
 }
