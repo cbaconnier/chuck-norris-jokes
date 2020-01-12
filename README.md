@@ -1,6 +1,6 @@
 # Chuck Norris Jokes
 
-Create Chuck Norris jokes in your PHP project.
+This is a test package to create Chuck Norris jokes in your PHP project.
 
 ## Installation
 
