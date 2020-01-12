@@ -36,5 +36,4 @@ class JokeFactoryTest extends TestCase
 
         $this->assertContains($joke, $chuckNorrisJokes);
     }
-
 }
