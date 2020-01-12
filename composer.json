@@ -1,0 +1,28 @@
+{
+    "name": "cbaconnier/chuck-norris-jokes",
+    "description": "Create random Chuck Norris jokes.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clément Baconnier",
+            "email": "clement.baconnier@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cbaconnier\\ChuckNorrisJokes\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cbaconnier\\ChuckNorrisJokes\\Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    }
+}
