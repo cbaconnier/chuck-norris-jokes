@@ -2,28 +2,25 @@
 
 namespace Cbaconnier\ChuckNorrisJokes;
 
+use GuzzleHttp\Client;
+
 class JokeFactory
 {
-    /**
-     * @var array
-     */
-    protected $jokes = [
-        'Chuck Norris threw a grenade and killed 50 people, then it exploded.',
-        'Slow motion was invented in an attempt to defeat Chuck Norris. In response, Chuck Norris invented fast forward.',
-        'Chuck Norris can shove your teeth so far down your throat that you need to sit on food to eat it.',
-        'Death once had a near-Chuck-Norris experience.',
-        'Chuck Norris can kill two stones with one bird.',
-    ];
+    const API_ENDPOINT = 'http://api.icndb.com/jokes/random';
 
-    public function __construct(array $jokes = null)
+    protected $client;
+
+    public function __construct(Client $client = null)
     {
-        if ($jokes) {
-            $this->jokes = $jokes;
-        }
+        $this->client = $client ?: new Client();
     }
 
     public function getRandomJoke()
     {
-        return $this->jokes[array_rand($this->jokes)];
+        $response = $this->client->get(self::API_ENDPOINT);
+
+        $joke = json_decode($response->getBody()->getContents(), false);
+
+        return $joke->value->joke;
     }
 }

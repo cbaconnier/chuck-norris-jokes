@@ -3,6 +3,10 @@
 namespace Cbaconnier\ChuckNorrisJokes\Tests;
 
 use Cbaconnier\ChuckNorrisJokes\JokeFactory;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 class JokeFactoryTest extends TestCase
@@ -10,30 +14,19 @@ class JokeFactoryTest extends TestCase
     /** @test */
     public function it_returns_a_random_joke(): void
     {
-        $jokes = new JokeFactory([
-            'This is a joke',
+        $mock = new MockHandler([
+            new Response(200, [], '{ "type": "success", "value": { "id": 457, "joke": "MySpace actually isn\'t your space, it\'s Chuck\'s (he just lets you use it).", "categories": ["nerdy"] } }'),
         ]);
 
-        $joke = $jokes->getRandomJoke();
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
 
-        $this->assertSame('This is a joke', $joke);
-    }
-
-    /** @test */
-    public function it_returns_a_predefined_joke(): void
-    {
-        $chuckNorrisJokes = [
-            'Chuck Norris threw a grenade and killed 50 people, then it exploded.',
-            'Slow motion was invented in an attempt to defeat Chuck Norris. In response, Chuck Norris invented fast forward.',
-            'Chuck Norris can shove your teeth so far down your throat that you need to sit on food to eat it.',
-            'Death once had a near-Chuck-Norris experience.',
-            'Chuck Norris can kill two stones with one bird.',
-        ];
-
-        $jokes = new JokeFactory($chuckNorrisJokes);
+        $jokes = new JokeFactory($client);
 
         $joke = $jokes->getRandomJoke();
 
-        $this->assertContains($joke, $chuckNorrisJokes);
+        $this->assertSame('MySpace actually isn\'t your space, it\'s Chuck\'s (he just lets you use it).', $joke);
     }
+
+
 }
