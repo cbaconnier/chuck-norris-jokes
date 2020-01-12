@@ -27,6 +27,4 @@ class JokeFactoryTest extends TestCase
 
         $this->assertSame('MySpace actually isn\'t your space, it\'s Chuck\'s (he just lets you use it).', $joke);
     }
-
-
 }
