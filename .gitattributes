@@ -2,5 +2,5 @@
 /.travis.yml export-ignore
 /.styleci.yml export-ignore
 /tests export-ignore
-/phpunit.xml.dst export-ignore
+/phpunit.xml.dist export-ignore
 /.gitattributes export-ignore
