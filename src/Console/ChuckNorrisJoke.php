@@ -14,5 +14,4 @@ class ChuckNorrisJoke extends Command
     {
         $this->info(ChuckNorris::getRandomJoke());
     }
-
 }
